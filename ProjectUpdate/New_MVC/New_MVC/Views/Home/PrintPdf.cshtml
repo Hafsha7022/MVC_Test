@@ -1,0 +1,187 @@
+﻿@using Mvc_Test.Models;
+@model CustomerMaster_Model
+@{
+
+    Layout = null;
+}
+<style>
+    .Common {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        margin-left: 0px;
+        display: flex;
+        border: 2px dashed black;
+        width: fit-content
+    }
+     .center {
+            text-align: center;
+            border: 3px solid black;
+        }
+    .Common1 {
+        margin-top: 20px;
+        display: flex;
+        border: 2px dashed black;
+        width: fit-content
+    }
+    
+</style>
+
+<div class=" col-lg-12 col-offset-12" style="margin: -8px; color: black; font-size: 15px; border: 2px solid black; border-radius: 10px; padding: 10px;">
+    <div style="padding-left: 0px;">
+        <h1 class="center">View Detail</h1>
+        <h3 style="font-size: 22px; background-color: yellow; width: 20%"><b>Customer Detail:</b></h3>
+        <table style="border: none; width: 60%; ">
+            <tr>
+                <td >
+                    <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+                    @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.CustomerCode)</b> <br />
+                    @Html.DisplayFor(x => x.CustomerCode)<br />
+                </td>
+                <td style="visibility:hidden">
+                    <b>@Html.DisplayNameFor(x => x.EndDate)</b> <br />
+                    @Html.DisplayFor(x => x.EndDate)<br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.SatrtDate)</b><br />
+                    @Html.DisplayFor(x => x.SatrtDate, new
+                    {
+                        @class = "form-control S_date",
+                        @id = "S_Date"@*, onkeyup = "GetDate()"*@})<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.Days)</b> <br />
+                    @Html.DisplayFor(x => x.Days)<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.EndDate)</b> <br />
+                    @Html.DisplayFor(x => x.EndDate)<br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.NewSatrtDate)</b> <br />
+                    @Html.DisplayFor(x => x.NewSatrtDate)<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.NewDays)</b> <br />
+                    @Html.DisplayFor(x => x.NewDays)<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.NewEndDate)</b><br />
+                    @Html.DisplayFor(x => x.EndDate)<br />
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <h3 style="font-size: 22px; background-color: yellow; width: 20%"><b>Address Detail:</b></h3>
+        <table style="border: none; width: 75%; ">
+            @foreach (var item in Model.CustomerDetails)
+            {
+                var FullName = item.AddressLine1 + ", " + item.AddressLine2 + ", " + item.City + ", " + item.State + ", " + item.PinCode;
+                <tr>
+                    <td>
+                        <b>@Html.DisplayName("Address")</b><br />
+                        @Html.DisplayFor(model => FullName)
+                    </td>
+                    <td>
+                        <b>@Html.DisplayNameFor(model => item.PhoneNumber)</b><br />
+                        @Html.DisplayFor(model => item.PhoneNumber)
+                    </td>
+                </tr>
+
+            }
+        </table>
+        <hr />
+        <h3 style="font-size: 22px; background-color: yellow; width: 20%"><b>Item Detail:</b></h3>
+        <table style="border: none; width: 75%; ">
+            @foreach (var item in Model.CustomerItems)
+            { 
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(model => item.Item)</b><br />
+                    @Html.DisplayFor(model => item.Item)
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(model => item.Qty)</b><br />
+                    @Html.DisplayFor(model => item.Qty)
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(model => item.Rate)</b><br />
+                    @Html.DisplayFor(model => item.Rate)
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(model => item.Amount)</b><br />
+                    @Html.DisplayFor(model => item.Amount)
+                </td>
+
+            </tr>
+
+             }
+</table>
+        <hr />
+        <table style="border: none; width: 75%; color: red ">
+            <tr>
+                <td style="visibility: hidden;">
+                    <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+                    @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td >
+                    <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+                    @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td style="visibility: hidden; width:5%">
+                    <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+                    @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td >
+                    <b>@Html.DisplayNameFor(x => x.GrossAmt)</b> <br />
+                    @Html.DisplayFor(x => x.GrossAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+            </tr>
+            <tr>
+                <td style="visibility: hidden; border: 1px solid">
+                    <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+                    @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayName("Discount:")</b> <br />
+                    
+                </td>
+                <td style="width: 5%">
+                    <b>@Html.DisplayName("%")</b> <br />
+                    @Html.DisplayFor(x => x.DiscPer, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                    </td>
+                <td>
+                    <b>@Html.DisplayName("Amt")</b> <br />
+                    @Html.DisplayFor(x => x.DiscAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+            </tr>
+            <tr>
+                <td style="visibility: hidden">
+                    <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+                    @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td style="visibility: hidden">
+                    <b>@Html.DisplayName("Discount:")</b> <br />
+
+                </td>
+                <td style="visibility: hidden; width: 5%">
+                    <b>@Html.DisplayName("%")</b> <br />
+                    @Html.DisplayFor(x => x.DiscPer, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+                <td>
+                    <b>@Html.DisplayNameFor(x => x.NetAmt)</b> <br />
+                    @Html.DisplayFor(x => x.NetAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </td>
+            </tr>
+        </table>
+</div>
+            </div>

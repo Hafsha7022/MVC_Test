@@ -1,0 +1,44 @@
+﻿@using Mvc_Test.Models
+@model CustomerItem_Model
+
+@using HtmlHelpers.BeginCollectionItem
+@using (Html.BeginCollectionItem("CustomerItems"))
+{
+    <div class="Common1" id="Common">
+        @Html.HiddenFor(x => x.ItemId, new { @class = "form-control I_Code", @id = "I_Code" })
+        <div class="form-group">
+            @Html.LabelFor(x => x.Item, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+            @Html.TextBoxFor(x => x.Item, new { @class = "form-control Name", @id = "ItemName" })<br />
+            @Html.ValidationMessageFor(model => model.Item, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Qty, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+            @Html.TextBoxFor(x => x.Qty, new { @class = "form-control Qty", @id = "Qty", onkeyup = "CalAmt(this); QtyTotal(); TotalCal(); DiscCal(this)" })<br />
+            @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Rate, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+            @Html.TextBoxFor(x => x.Rate, new { @class = "form-control Item", @id = "Rate", onkeyup = "CalAmt(this); TotalCal(); DiscCal(this)" })<br />
+            @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Amount, htmlAttributes: new { @class = "control-label col-md-2" })<br />
+            @Html.TextBoxFor(x => x.Amount, new { @readonly = "true", @class = "form-control AmtTotal", @id = "Amount", onkeyup = "TotalCal()" })<br />
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group" style="margin-right: 10px">
+            <label></label>
+            <div class="col-md-10">
+                <button type="button" class="btn-Remove item" id="RemoveItem" onclick="ItemRemove(this)">Remove</button>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+

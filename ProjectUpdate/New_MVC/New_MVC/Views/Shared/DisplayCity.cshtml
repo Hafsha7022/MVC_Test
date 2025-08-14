@@ -1,0 +1,11 @@
+﻿@model New_MVC.Models.EmpCity
+
+<option value="">-- Select City --</option>
+
+@if (ViewBag.CList != null)
+{
+    foreach (var item in ViewBag.CList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

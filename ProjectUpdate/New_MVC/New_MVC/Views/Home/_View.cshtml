@@ -1,0 +1,277 @@
+﻿@using Mvc_Test.Models;
+@model CustomerMaster_Model
+@*background-color: #FFDCED*@
+<div class=" col-lg-12 col-offset-12" style="margin: 30px; background: -webkit-linear-gradient( #ffcce6, #66c2ff); color: black; font-size: 15px; border: 2px solid black; border-radius: 10px; padding: 20px;">
+    <div class="modal-header">
+        <button style="background-color: red" type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.reload()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="ExampleModalLabel"> </h5>
+    </div>
+    <div style="padding-left: 0px;">
+        <h1 class="center" style="background-color: darkblue; color: white">View Detail</h1>
+        <h3>Customer Detail:</h3>
+        <div class="Common" style="border: none">
+
+            <div class="DDD" style="margin-right: 15px">
+
+                <div style="color:blue">
+                    <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+                    @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                </div>
+                <br />
+
+
+                <b>@Html.DisplayNameFor(x => x.SatrtDate)</b><br />
+                @Html.DisplayFor(x => x.SatrtDate, new
+                {
+                    @class = "form-control S_date",
+                    @id = "S_Date"@*, onkeyup = "GetDate()"*@})<br />
+
+
+
+
+                <b>@Html.DisplayNameFor(x => x.NewSatrtDate)</b> <br />
+                @Html.DisplayFor(x => x.NewSatrtDate)<br />
+
+
+            </div>
+            <div class="DDD" style="margin-right: 15px">
+                <div style="color:blue">
+                    <b>@Html.DisplayNameFor(x => x.CustomerCode)</b> <br />
+                    @Html.DisplayFor(x => x.CustomerCode)<br />
+                </div>
+                <br />
+                <b>@Html.DisplayNameFor(x => x.Days)</b> <br />
+                @Html.DisplayFor(x => x.Days)<br />
+
+                <b>@Html.DisplayNameFor(x => x.NewDays)</b> <br />
+                @Html.DisplayFor(x => x.NewDays)<br />
+
+            </div>
+
+            <div class="DDD">
+
+                <div class="DD" style="visibility:hidden">
+
+                    <b>@Html.DisplayNameFor(x => x.EndDate)</b> <br />
+                    @Html.DisplayFor(x => x.EndDate)<br />
+                </div>
+                <br />
+                <b>@Html.DisplayNameFor(x => x.EndDate)</b> <br />
+                @Html.DisplayFor(x => x.EndDate)<br />
+
+                <b>@Html.DisplayNameFor(x => x.NewEndDate)</b><br />
+                @Html.DisplayFor(x => x.EndDate)<br />
+
+
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    <h3>Address Detail:</h3>
+    @foreach (var item in Model.CustomerDetails)
+    {
+        var FullName = item.AddressLine1 + ", " + item.AddressLine2 + ", " + item.City + ", " + item.State + ", " + item.PinCode;
+        <div class="Common1" style="border: none; padding-left: 0px;">
+            <div class="AAA" style="margin-right:60px">
+                <b>@Html.DisplayName("Address")</b><br />
+                @Html.DisplayFor(model => FullName)
+                @*<b>@Html.DisplayNameFor(model => item.AddressLine1 )</b><br />
+                        @Html.DisplayFor(model => FullName)
+                    </div>
+                    <div class="AAA" style="margin-right:40px">
+                        <b>@Html.DisplayNameFor(model => item.AddressLine2)</b><br />
+                        @Html.DisplayFor(model => item.AddressLine2)
+                    </div>
+                    <div class="AAA" style="margin-right:40px">
+                        <b>@Html.DisplayNameFor(model => item.City)</b><br />
+                        @Html.DisplayFor(model => item.City)
+                    </div>
+                    <div class="AAA" style="margin-right:40px">
+                        <b>@Html.DisplayNameFor(model => item.State)</b><br />
+                        @Html.DisplayFor(model => item.State)
+                    </div>
+                    <div class="AAA" style="margin-right:40px">
+                        <b>@Html.DisplayNameFor(model => item.PinCode)</b><br />
+                        @Html.DisplayFor(model => item.PinCode)*@
+
+            </div>
+            <div class="AAA" style="margin-right:10px">
+                <b>@Html.DisplayNameFor(model => item.PhoneNumber)</b><br />
+                @Html.DisplayFor(model => item.PhoneNumber)
+            </div>
+        </div>
+    }
+    <hr />
+    <h3>Items Detail:</h3>
+    @foreach (var item in Model.CustomerItems)
+    {
+        <div class="Common1" style="border: none; padding-left: 10px;">
+            <div class="AAA" style="margin-right:40px">
+                <b>@Html.DisplayNameFor(model => item.Item)</b><br />
+                @Html.DisplayFor(model => item.Item)
+            </div>
+            <div class="AAA" style="margin-right:40px">
+                <b>@Html.DisplayNameFor(model => item.Qty)</b><br />
+                @Html.DisplayFor(model => item.Qty)
+            </div>
+            <div class="AAA" style="margin-right:40px">
+                <b>@Html.DisplayNameFor(model => item.Rate)</b><br />
+                @Html.DisplayFor(model => item.Rate)
+            </div>
+            <div class="AAA" style="margin-right:40px">
+                <b>@Html.DisplayNameFor(model => item.Amount)</b><br />
+                @Html.DisplayFor(model => item.Amount)
+            </div>
+
+        </div>
+    }
+
+<div class="Common" style="border: 2px dashed blue; margin-bottom: 20px; padding-right: 0px; padding-left: -5px; margin-left: -5px;">
+    <div class="DDD" style="margin-right: 40px; visibility: hidden">
+        <div style=" ">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+    </div>
+    <div class="DDD" style="margin-right: 15px">
+        <div style="">
+            <b>@Html.DisplayNameFor(x => x.TotalQty)</b> <br />
+            @Html.DisplayFor(x => x.TotalQty, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="color: blueviolet">
+            <b>@Html.DisplayName("Discount:")</b> <br />
+            @*@Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />*@
+        </div>
+        <br />
+        <div style="visibility: hidden">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+    </div>
+    <div class="DDD" style="margin-right: 15px">
+        <div style="visibility: hidden">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="color: red">
+            <b>@Html.DisplayName("%")</b> <br />
+            @Html.DisplayFor(x => x.DiscPer, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="visibility: hidden">
+            <b>@Html.DisplayNameFor(x => x.Name)</b> <br />
+            @Html.DisplayFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+    </div>
+    <div class="DDD" style="margin-right: 3px">
+        <div style="color: blue">
+            <b>@Html.DisplayNameFor(x => x.GrossAmt)</b> <br />
+            @Html.DisplayFor(x => x.GrossAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="color: red">
+            <b>@Html.DisplayName("Amt")</b> <br />
+            @Html.DisplayFor(x => x.DiscAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+        <div style="color: blue">
+            <b>@Html.DisplayNameFor(x => x.NetAmt)</b> <br />
+            @Html.DisplayFor(x => x.NetAmt, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+        </div>
+        <br />
+    </div>
+</div>
+
+        @*<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 col-offset-12 Common1" style="border: 2px dashed blue; padding: 10px">
+                <div class="AAA" style="margin-right: 10px; visibility: hidden">
+                    <b>@Html.DisplayNameFor(model => model.GrossAmt)</b><br />
+                    @Html.DisplayFor(model => model.GrossAmt)
+                </div>
+                <div class="AAA" style="margin-right: 0px">
+                    <b>@Html.DisplayNameFor(model => model.TotalQty)</b><br />
+                    @Html.DisplayFor(model => model.TotalQty)
+                </div>
+                <div class="AAA" style="margin-right: 0px; visibility: hidden">
+                    <b>@Html.DisplayNameFor(model => model.TotalQty)</b><br />
+                    @Html.DisplayFor(model => model.TotalQty)
+                </div>
+                <div class="AAA" style="margin-right: 0px">
+                    <b>@Html.DisplayNameFor(model => model.GrossAmt)</b><br />
+                    @Html.DisplayFor(model => model.GrossAmt)
+                </div>
+            </div>*@
+
+        @*<div class="Common" style="border: none; margin-left: 0px; padding-left: 0px; display: block;">
+            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 col-offset-12 Common1" style="border: 2px dashed blue; padding: 10px; margin: 10px; padding-left: 0px; text-align: center">
+                <div class="AAA" style="margin-right: 0px; visibility: hidden">
+                    <b>@Html.DisplayNameFor(model => model.GrossAmt)</b><br />
+                    @Html.DisplayFor(model => model.GrossAmt)
+                </div>
+                <div class="AAA" style="margin-right: 0px">
+                    <b>@Html.DisplayNameFor(model => model.TotalQty)</b><br />
+                    @Html.DisplayFor(model => model.TotalQty)
+                </div>
+                <div class="AAA" style="margin-right: 0px; visibility: hidden">
+                    <b>@Html.DisplayNameFor(model => model.TotalQty)</b><br />
+                    @Html.DisplayFor(model => model.TotalQty)
+                </div>
+                <div class="AAA" style="margin-right: 0px">
+                    <b>@Html.DisplayNameFor(model => model.GrossAmt)</b><br />
+                    @Html.DisplayFor(model => model.GrossAmt)
+                </div>
+
+            </div>
+            <div class="Common2" style="border: 2px dashed blue; padding: 10px; margin-bottom:20px; display: block">
+
+                <div class="Common1" style="border: none; margin-top: 0px; float: right; text-align: center">
+
+                    <div class="AAA" style="margin-right: 20px">
+                        <b>@Html.DisplayNameFor(model => model.DiscPer)</b><br />
+                        @Html.DisplayFor(model => model.DiscPer)
+                    </div>
+                    <div class="AAA" style="margin-right: 10px">
+                        <b>@Html.DisplayNameFor(model => model.DiscAmt)</b><br />
+                        @Html.DisplayFor(model => model.DiscAmt)
+                    </div>
+                </div>
+                <div class="Common1" style="border: none; margin-top: 0px; float: right; text-align: center">
+                    <div style="visibility: hidden">
+                        <b>@Html.DisplayNameFor(model => model.NetAmt)</b><br />
+                        @Html.DisplayFor(model => model.NetAmt)
+                    </div>
+
+                    <div class="Common" style="border: none; margin-top: 0px; float: right; text-align: center">
+                        <div class="AAA" style="margin-right: 10px">
+                            <b>@Html.DisplayNameFor(model => model.NetAmt)</b><br />
+                            @Html.DisplayFor(model => model.NetAmt)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>*@
+        <form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn- btn-block" data-dismiss="modal" onClick="window.location.reload()">Close</button>
+                @*<button class="btn btn-lg btn-success">Save</button>*@
+            </div>
+        </form>
+    </div>

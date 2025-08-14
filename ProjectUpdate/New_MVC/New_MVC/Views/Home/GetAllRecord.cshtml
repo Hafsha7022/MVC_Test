@@ -1,0 +1,271 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "List";
+} 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Customer_Details</title>
+
+    <style>
+        body {
+            margin: 15px;
+        }
+
+        .Message {
+            color: red;
+        }
+        .Common {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            margin-left: 0px;
+            display: flex;
+            border: 2px dashed black;
+            width: fit-content
+        }
+        .Common1 {
+            margin-top: 20px;
+            display: flex;
+            border: 2px dashed black;
+            width: fit-content
+        }
+        hr {
+            height: 2px;
+            background-color: darkblue;
+            border: none;
+
+        }
+
+        table {
+            border: 3px solid;
+            margin: auto;
+            width: 100%;
+            padding: 5px;
+            text-align: center
+        }
+
+        th {
+            font-weight: bold;
+            border: 3px solid;
+        }
+
+        td {
+            font-weight: normal;
+            text-align: center
+        }
+
+        th, td {
+            border: 2px dotted;
+            margin: auto;
+            font-size: 20px;
+            padding: 5px;
+            text-align: center
+        }
+
+        .center {
+            text-align: center;
+            border: 3px solid black;
+        }
+
+
+        .Right {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-group {
+            font-size: 25px;
+        }
+
+        .btn-default {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .dropbtn {
+            /*background-color: #04AA6D;*/
+            color: black;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            text-align: center;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+            color: white;
+        }
+        html{
+            max-width: 100%;
+            height: auto;
+            padding: 5px;
+        }
+        .modal-header {
+            border-bottom: 3px solid #e5e5e5;
+        }
+        .modal-footer {
+            border-top: 3px solid #e5e5e5;
+        }
+        .close {
+            opacity: 100%;
+            width:25px;
+            
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="modal fade" id="ViewData">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <div>
+        <form>
+
+
+            @*<div style="background-color: black; text-align: right; padding-right: 10px; padding-top: 20px; padding-bottom: 20px ">
+                    <div class="dropdown">
+                        <button class="dropbtn">Welcome @Session["UserName"].ToString()</button>
+                        <h2 style="text-align: right; margin-right: 10px; color: white" hidden>Welcome @Session["UserName"].ToString()</h2>
+                        <div class="dropdown-content">
+                            <a href="Default/Logout">LogOut</a>
+                        </div>
+                    </div>
+                </div>
+                <br />*@
+            <h1 style="text-align: center"> Customer List </h1>
+            <hr />
+        </form>
+    </div>
+    @*<br />*@
+
+    <br />
+    <div class="Message">
+        @ViewBag.Message
+    </div>
+    <br />
+    <table>
+        <tr>
+            <th>Customer Id</th>
+            <th>Name</th>
+            @*<th>CustomerCode</th>*@
+            <th>No. of Address</th>
+            <th>Net Amt</th>
+
+            @*<th>PhoneNumber</th>*@
+            <th>Action</th>
+
+        </tr>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][0]</td>
+                <td>@Model.Rows[i][1]</td>
+                @*<td>@Model.Rows[i][3]</td>*@
+                <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>
+
+                @*<td>@Model.Rows[i][4], @Model.Rows[i][5], @Model.Rows[i][6], @Model.Rows[i][7], @Model.Rows[i][8]</td>*@
+                @*<td>@Model.Rows[i][9]</td>*@
+
+            <td>
+                <a href="@Url.Action("Create", "Home", new { @id = @Model.Rows[i][0]})" class=" btn-primary btn-sm" type="button">Edit</a>
+                <a href="@Url.Action("Delete", "Home", new { @id = Model.Rows[i][0]})" class=" btn-danger btn-sm" type="button">Delete</a>
+                <a href="@Url.Action("_View","Home", new { @id = Model.Rows[i][0]})" class=" btn-success btn-sm" type="button" data-toggle="modal" data-target="#ViewData">View Data</a>
+                <a href="@Url.Action("PrintPdf", "Home", new { @id = Model.Rows[i][0]})" class=" btn-danger btn-sm" type="button" target="_blank">PDF</a>
+            </td>
+
+            </tr>
+
+        }
+    </table>
+    <br />
+    <div style="font-size:30px">
+        <a href="@Url.Action("Create", "Home")">Add New</a>
+
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    @*<script>
+            $(function () {
+                $("#btnSubmit").on("click", function () {
+
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Home/Add_Data",
+                            data: {
+                                AddressLine1: $("#Addr_1").val(),
+                                AddressLine2: $("#Addr_2").val(),
+                                City: $("#City").val(),
+                                State: $("#State").val(),
+                                PinCode: $("#PinCode").val(),
+                                PhoneNumber: $("#PhoneNumber").val(),
+                            },
+                            success: function (da) {
+                                alert(da);
+                            }
+                        }
+                    );
+
+                });
+            });
+        </script>*@
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@using Mvc_Test.Models
+@model CustomerDetails_Model
+
+
+@using HtmlHelpers.BeginCollectionItem
+
+
+@*@model Mvc_Test.Models.CustomerDetails_Model*@
+
+@using (Html.BeginCollectionItem("CustomerDetails"))
+{
+    <div class="Common" id="Common">
+        @Html.HiddenFor(x => x.CustomerId, new { @class = "form-control C_Code", @id = "C_Code" })
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.AddressLine1, new { @class = "form-control Addr_1", @id = "Addr_1" })
+            @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.AddressLine2, new { @class = "form-control Addr_2", @id = "Addr_2" })
+            @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control City", @id = "City" })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.State, new { @class = "form-control State", @id = "State" })
+            @Html.ValidationMessageFor(model => model.State, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.PinCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.PinCode, new { @class = "form-control PinCode", @id = "PinCode" })
+            @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control PhoneNumber", @id = "PhoneNumber" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "center" })
+        </div>
+
+        <div class="form-group" style="margin-right: 10px">
+            <label></label>
+            <div class="col-md-10">
+                <button type="button" class="btn-Remove detail" id="RemoveNew" onclick="RemoveDiv(this)">Remove</button>
+            </div>
+        </div>
+    </div>
+}
