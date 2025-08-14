@@ -1,0 +1,68 @@
+﻿@model Mvc_Test.Models.CustomerMaster_Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Customer_create</title>
+    <link href="~/Resource/bootstrap.css" rel="stylesheet" />
+    <link href="~/Resource/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Resource/jquery-1.7.1.js"></script>
+    <style>
+        .Message{
+            font-size: 20 px;
+            color: red;
+        }
+        .center {
+            color: red;
+            text-align: center;
+            /*border: 3px solid black;*/
+        }
+
+        .Left {
+            text-align: left;
+            padding-left: 50px;
+            padding-right: 50px;
+            border: 3px solid black;
+        }
+
+        .Right {
+            text-align: right;
+            margin-right: 10px;
+            /*border: 3px solid black;*/
+        }
+
+        .form-group {
+            font-size: 15px;
+        }
+        .btn-default {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <h1 class="center">Delete Customer</h1>
+
+    <div class="Right">
+        @Html.ActionLink("Back to List", "GetAllCustDetails")
+    </div>
+    <hr />
+    <div class="Message">
+        @ViewBag.Message
+    </div>
+
+
+</body>
+</html>

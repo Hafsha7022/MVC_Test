@@ -1,0 +1,242 @@
+﻿@using Mvc_Test.Models;
+@model CustomerMaster_Model
+
+
+
+@*@model Mvc_Test.Models.CustomerMaster_Model*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Customer_create</title>
+    <link href="~/Resource/bootstrap.css" rel="stylesheet" />
+    <link href="~/Resource/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Resource/jquery-1.7.1.js"></script>
+    <style>
+        .Message {
+            font-size: 20px;
+            color: red;
+        }
+
+        .center {
+            color: red;
+            text-align: center;
+            /*border: 3px solid black;*/
+        }
+
+        .Common {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            /* margin-left: 10px;*/
+            display: flex;
+            border: 2px dashed black;
+            width: fit-content
+        }
+
+        .Left {
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 3px solid black;
+        }
+
+        .Right {
+            text-align: right;
+            margin-right: 10px;
+            /*border: 3px solid black;*/
+        }
+
+        .form-group {
+            font-size: 15px;
+            margin-right: 20px;
+        }
+
+        .child {
+            width: fit-content;
+            float: left;
+            padding: 20px;
+        }
+
+        .btn-default {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 150px;
+            height: 40px;
+        }
+
+        .btn-Add {
+            background-color: red;
+            color: white;
+            padding: 6px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: fit-content;
+            height: 30px;
+        }
+
+        .btn-Remove {
+            background-color: blue;
+            color: white;
+            padding: 6px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 5px;
+            /*margin: 2px 2px;*/
+            cursor: pointer;
+            width: fit-content;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="Left">
+        @using (Html.BeginForm("Add_Data", "Home", new { id = Model.CustomerId, code = Model.CustomerCode }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            if (Model.CustomerId == 0)
+            {
+                <h1 class="center">Add New Customer</h1>
+            }
+            else
+            {
+                <h1 class="center">Update Customer</h1>
+            }
+            @*<h1 class="center">Add New Customer</h1>*@
+            @Html.HiddenFor(x => x.CustomerId, new { @class = "form-control C_Id", @id = "C_Id" })
+            @*@Html.HiddenFor(x=>x.CustomerDetails, new { @class = "form-control C_Code", @id = "C_Code" })*@
+
+            <div class="Right">
+                @Html.ActionLink("Back to List", "GetAllCustDetails")
+            </div>
+            <hr />
+            @Html.ValidationSummary(true, " ", new { @class = "text-danger" })
+            <div class="Message">
+                @ViewBag.Message
+            </div>
+            <div class="container" style="border: 2px dashed blue">
+                <div class="child">
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "center" })
+                        </div>
+                    </div>
+                </div>
+                <div class="child" style="margin-left:20px">
+                    <div class="form-group1">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Add New Address Line" id="AddNew" class="btn-Add" />
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            @*<br />
+                <div class="form-group">
+                    @Html.LabelFor(x => x.CustomerCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("CustomerCode", ViewData["Name"], new { @class = "form-control C_Code", @id = "C_Code", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.CustomerCode, "", new { @class = "center" })
+                    </div>
+                </div>*@
+            @*<h3 style="color:red">Address- Detail</h3>*@
+
+            <br />
+            <div class="Master" id="Master">
+                @foreach (var item in Model.CustomerDetails)
+                {
+                    Html.RenderPartial("_CreateD", item);
+                    //Html.HiddenFor(item => item.CustomerId, new { @class = "form-control C_Code", @id = "C_Code" });
+                }
+
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" id="btnSubmit" class="btn btn-default" />
+
+                </div>
+            </div>
+            <br />
+            <br />
+        }
+    </div>
+    <script>
+
+        let Add = document.getElementById("Addr_1")
+        let cloneAdd = Add.cloneNode();
+        /*console.log(cloneAdd);*/
+        var i = 1;
+        $(function () {
+            $('.btn-Add').click(function () {
+                $.ajax({
+                    async: false,
+                    url: "/Home/AddNewLine",
+                    success: function (partialView) {
+                        $('#Master').append(partialView);
+                    }
+                })
+
+                //const menu = document.querySelector('.Master');
+
+
+
+
+                //let Add = document.getElementsByClassName("Common")[0]
+                //let cloneAdd = Add.cloneNode(true);
+                //cloneAdd.id = "New-Elem" + i;
+                //menu.appendChild(cloneAdd);
+                //for (var j = 0; j < 6; j++) {
+                //    var clearElem = document.getElementById("New-Elem" + i).getElementsByTagName('input')[j];
+                //    clearElem.value = "";
+                //    /*console.log(clearElem);*/
+                //}
+                //for (var k = 1; k < i+1; k++) {
+                //    var BtnRemove = document.getElementsByTagName('button')[k];
+                //    BtnRemove.removeAttribute('disabled');
+                //}
+                //i = i + 1;
+
+
+            })
+
+        })
+
+        function RemoveDiv(div) {
+            var P_Node = div.parentNode.parentNode.parentNode;
+            P_Node.remove();
+            console.log(P_Node);
+            i = i - 1;
+
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+﻿@model System.Data.DataTable
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Customer_Details</title>
+    <link href="~/Resource/bootstrap.css" rel="stylesheet" />
+    <link href="~/Resource/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Resource/jquery-1.7.1.js"></script>
+    <style>
+        .Message {
+            color: red;
+        }
+        table {
+            border: 3px solid;
+            margin: auto;
+            width: 50%;
+        }
+        th{
+            font-weight: bold;
+        }
+        td {
+            font-weight: normal;
+        }
+        th, td {
+            border: 1px dashed;
+            margin:auto;
+            font-size:20px;
+        }
+    
+        .center {
+            text-align: center;
+            border: 3px solid black;
+        }
+        
+
+        .Right {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-group {
+            font-size: 25px;
+        }
+        .btn-default {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <form>
+            <h1> Customer List </h1>
+        </form>
+    </div>
+    <br />
+    <div class="Message">
+        @ViewBag.Message
+    </div>
+    <br />
+    <table>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Transaction Count</th>
+
+        </tr>
+
+        
+
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][0]</td>
+                <td>@Model.Rows[i][1]</td>
+                <td>@Model.Rows[i][2]</td>
+
+            </tr>
+
+        }
+    </table>
+    <br />
+    <div style="font-size:30px">
+        <a href="@Url.Action("Create", "Home")">Add New</a>
+    </div>
+    @*<script>
+            $(function () {
+                $("#btnSubmit").on("click", function () {
+
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Home/Add_Data",
+                            data: {
+                                AddressLine1: $("#Addr_1").val(),
+                                AddressLine2: $("#Addr_2").val(),
+                                City: $("#City").val(),
+                                State: $("#State").val(),
+                                PinCode: $("#PinCode").val(),
+                                PhoneNumber: $("#PhoneNumber").val(),
+                            },
+                            success: function (da) {
+                                alert(da);
+                            }
+                        }
+                    );
+
+                });
+            });
+        </script>*@
+
+</body>
+</html>

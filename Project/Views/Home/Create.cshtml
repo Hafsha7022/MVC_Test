@@ -1,0 +1,769 @@
+﻿@using Mvc_Test.Models;
+@model CustomerMaster_Model
+
+
+
+@*@model Mvc_Test.Models.CustomerMaster_Model*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Customer_create</title>
+    <link href="~/Resource/bootstrap.css" rel="stylesheet" />
+    <link href="~/Resource/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Resource/jquery-1.7.1.js"></script>
+    <style>
+        .Message {
+            font-size: 20px;
+            color: red;
+        }
+
+        .center {
+            color: red;
+            text-align: center;
+            /*border: 3px solid black;*/
+        }
+
+        .Common {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            /* margin-left: 10px;*/
+            display: flex;
+            border: 2px dashed black;
+            width: fit-content
+        }
+        .Common1 {
+            padding-left: 10px;
+            padding-right: 5px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            /* margin-left: 10px;*/
+            display: flex;
+            border: 2px dashed black;
+            width: fit-content
+        }
+
+        .Left {
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 3px solid black;
+        }
+
+        .Right {
+            text-align: right;
+            margin-right: 10px;
+            /*border: 3px solid black;*/
+        }
+
+        .form-group {
+            font-size: 15px;
+            margin-right: 20px;
+        }
+
+        .child {
+            width: fit-content;
+            float: left;
+            padding: 20px;
+        }
+
+        .btn-default {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 150px;
+            height: 40px;
+        }
+
+        .btn-Add {
+            background-color: red;
+            color: white;
+            padding: 6px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: fit-content;
+            height: 30px;
+        }
+
+        .btn-Remove {
+            background-color: blue;
+            color: white;
+            padding: 6px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 5px;
+            /*margin: 2px 2px;*/
+            cursor: pointer;
+            width: fit-content;
+            height: 30px;
+        }
+        #DiscP, #DiscAmt {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="Left">
+        @using (Html.BeginForm("Add_Data", "Home", new { id = Model.CustomerId, code = Model.CustomerCode }, FormMethod.Post, new { @id = "CNform" }))
+        {
+
+            @Html.AntiForgeryToken()
+            if (Model.CustomerId == 0)
+            {
+                <h1 class="center">Add New Customer</h1>
+            }
+            else
+            {
+                <h1 class="center">Update Customer</h1>
+            }
+            @*<h1 class="center">Add New Customer</h1>*@
+            @Html.HiddenFor(x => x.CustomerId, new { @class = "form-control C_Id", @id = "C_Id" })
+            @*@Html.HiddenFor(x=>x.CustomerDetails, new { @class = "form-control C_Code", @id = "C_Code" })*@
+
+            <div class="Right">
+                @Html.ActionLink("Back to List", "GetAllCustDetails")
+            </div>
+            <hr />
+            @Html.ValidationSummary(true, " ", new { @class = "text-danger" })
+            <div class="Message">
+                @ViewBag.Message
+            </div>
+            <div class="container" style="border: 2px dashed blue">
+                <div class="child">
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "center" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.CustomerCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.CustomerCode, new { @class = "form-control C_Name", @id = "C_Name" })<br />
+                            @Html.ValidationMessageFor(model => model.CustomerCode, "", new { @class = "center" })
+                        </div>
+                    </div>
+                </div>
+                <div class="child" style="margin-left:20px">
+                    <div class="form-group1">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Add New Address Line" id="AddNew" class="btn-Add" />
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.SatrtDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.SatrtDate, new   { @class = "form-control S_date",  @id = "S_Date"@*, onkeyup = "GetDate()"*@})<br />
+                            @Html.ValidationMessageFor(model => model.SatrtDate, "", new { @class = "center" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.NewSatrtDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.NewSatrtDate, new { @class = "form-control StartDateNew", @id = "StartDateNew", onchange = " GetDayNew()" })<br />
+                            @Html.ValidationMessageFor(model => model.NewSatrtDate, "dd/mm/yyyy", new { @class = "center" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="child" style="margin-left:20px">
+                    <div class="form-group1">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Add New Item" id="AddItem" class="btn-Add" />
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.Days, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.Days, new { @class = "form-control Day", @id = "Day", onkeyup = "GetDate()" })<br />
+                            @Html.ValidationMessageFor(model => model.Days, "", new { @class = "center" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.NewDays, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.NewDays, new { @class = "form-control DayNew", @id = "DayNew", onchange = "NewDate()" })<br />
+                            @Html.ValidationMessageFor(model => model.NewDays, "", new { @class = "center" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="child" style="margin-left:20px">
+                    <div class="form-group1">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Add New Item" id="AddItem" class="btn-Add" style="visibility: hidden" />
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control E_Date", @id = "E_Date", onchange = "GetDay()" })<br />
+                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "center" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group1">
+                        @Html.LabelFor(x => x.NewEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.NewEndDate, new { @class = "form-control E_DateNew", @id = "E_DateNew", onchange = "GetDayNew()" })<br />
+                            @Html.ValidationMessageFor(model => model.EndDate, "dd/mm/yyyy", new { @class = "center" })
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            @*<br />
+                <div class="form-group">
+                    @Html.LabelFor(x => x.CustomerCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("CustomerCode", ViewData["Name"], new { @class = "form-control C_Code", @id = "C_Code", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.CustomerCode, "", new { @class = "center" })
+                    </div>
+                </div>*@
+            @*<h3 style="color:red">Address- Detail</h3>*@
+
+            <br />
+            <div class="Master" id="Master">
+                @foreach (var item in Model.CustomerDetails)
+                {
+                    Html.RenderPartial("_CreateD", item);
+
+                }
+
+            </div>
+
+            <div class="MasterItem" id="MasterItem">
+                @foreach (var item in Model.CustomerItems)
+                {
+                    Html.RenderPartial("_ItemD", item);
+
+                }
+
+            </div>
+            <br />
+
+            <div class="MasterAmt" id="MasterAmt" style="display:flex">
+                <div class="Common1" id="Common" style="margin-right: 200px">
+
+                    <div class="form-group">
+                        <label style="color: red; font-size:40px">TOTAL</label>
+                        @Html.Label("Item", htmlAttributes: new { @class = "control-label col-md-2", @style = " visibility: hidden" })<br />
+                        @Html.TextBox("Item", null, new { @style = " visibility: hidden" })<br />
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.TotalQty, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })
+                        @Html.TextBoxFor(x => x.TotalQty, new { @readonly = "true", @style = "color: red", @id = "TotalQty" })
+
+                    </div>
+
+                    <div class="form-group" style=" visibility: hidden">
+                        @Html.Label("Rate", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBox("Rate", null, new { })<br />
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.GrossAmt, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })
+                        @Html.TextBoxFor(x => x.GrossAmt, new { @readonly = "true", @style = "color: red", @id = "TotalAmt" })
+
+                    </div>
+
+                    <div class="form-group" style="margin-right: 10px; visibility: hidden">
+                        <label></label>
+                        <div class="col-md-10">
+                            @*<button type="button" class="btn-Remove" id="RemoveItem" onclick="ItemRemove(this)">Remove</button>*@
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="Common1" id="Common" style="display:block">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.GrossAmt, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })<br />
+                        @Html.TextBoxFor(x => x.GrossAmt, new { @readonly = "true", @style = "color: red", @id = "TotalAmt1", onkeyup = "DiscCal(this)" })<br />
+
+                    </div><br />
+                    <div class="Disc" style="display:flex">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.DiscPer, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })<br />
+                            @Html.TextBoxFor(x => x.DiscPer, new { @style = "color: red", @id = "DiscP", onkeyup = "DiscCal(this)" })<br />
+
+                        </div><br />
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.DiscAmt, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })<br />
+                            @Html.TextBoxFor(x => x.DiscAmt, new { @readonly = "true", @style = "color: red", @id = "DiscAmt" })<br />
+
+                        </div>
+                    </div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.NetAmt, htmlAttributes: new { @class = "control-label col-md-2", @style = "color: red" })<br />
+                        @Html.TextBoxFor(x => x.NetAmt, new { @readonly = "true", @style = "color: red", @id = "NetAmt" })<br />
+
+                    </div><br />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" id="btnSubmit" class="btn btn-default" />
+
+                </div>
+            </div>
+
+        }
+    </div>
+    <script>
+
+        let Add = document.getElementById("Addr_1")
+        let cloneAdd = Add.cloneNode();
+
+        /*console.log(cloneAdd);*/
+        var i = 1;
+        var j = 1;
+        $(function () {
+            $('#AddNew').click(function () {
+                $.ajax({
+                    async: false,
+                    url: "/Home/AddNewLine",
+                    success: function (partialView) {
+                        $('#Master').append(partialView);
+                        i += 1;
+                        console.log(i)
+
+
+
+                        if (i != 1) {
+                            let elements = document.getElementsByClassName('detail');
+                            for (let i = 0; i < elements.length; i++) {
+                                $('.detail').removeAttr('disabled');
+                            }
+                            //$('.detail').each(function () {
+                            //    $('this').attr('disabled', 'false');
+                            //});
+                        }
+                        else {
+                            $('.detail').attr('disabled', 'true');
+                        }
+                    }
+                })
+
+                //const menu = document.querySelector('.Master');
+
+
+
+
+                //let Add = document.getElementsByClassName("Common")[0]
+                //let cloneAdd = Add.cloneNode(true);
+                //cloneAdd.id = "New-Elem" + i;
+                //menu.appendChild(cloneAdd);
+                //for (var j = 0; j < 6; j++) {
+                //    var clearElem = document.getElementById("New-Elem" + i).getElementsByTagName('input')[j];
+                //    clearElem.value = "";
+                //    /*console.log(clearElem);*/
+                //}
+                //for (var k = 1; k < i+1; k++) {
+                //    var BtnRemove = document.getElementsByTagName('button')[k];
+                //    BtnRemove.removeAttribute('disabled');
+                //}
+                //i = i + 1;
+
+
+            })
+
+        })
+
+        function RemoveDiv(div) {
+            var P_Node = div.parentNode.parentNode.parentNode;
+            console.log(P_Node);
+
+
+            var NewCode = $(P_Node).closest('#Common').find("#C_Code").val()
+            console.log(NewCode);
+            if (NewCode != 0) {
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: "/Home/RemoveLine",
+                    data: { DelCode: NewCode },
+                    success: function () {
+                        P_Node.remove();
+                    }
+                })
+            }
+
+            else {
+                P_Node.remove();
+            }
+
+            i = i - 1;
+            if (i != 1) {
+                $('.detail').each(function () {
+                    $('this').attr('disabled', 'false');
+                });
+            }
+            else {
+                $('.detail').attr('disabled', 'true');
+            }
+
+
+
+        }
+
+
+
+
+
+        $(function () {
+            $('#AddItem').click(function () {
+                $.ajax({
+                    async: false,
+                    url: "/Home/AddNewItem",
+                    success: function (partialView) {
+                        $('#MasterItem').append(partialView);
+
+                        j += 1;
+                        console.log(j)
+                        if (j != 1) {
+                            let elements = document.getElementsByClassName('item');
+                            for (let i = 0; i < elements.length; i++) {
+                                $('.item').removeAttr('disabled');
+                            }
+                        }
+                        else {
+                            $('.item').attr('disabled', 'true');
+                        }
+                    }
+                })
+            })
+        })
+
+        function ItemRemove(div) {
+            var P_Node = div.parentNode.parentNode.parentNode;
+            console.log(P_Node);
+            /*            P_Node.remove();*/
+            var NewCode = $(P_Node).closest('#Common').find("#I_Code").val()
+            console.log(NewCode);
+            if (NewCode != 0) {
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: "/Home/RemoveItem",
+                    data: { DelCode: NewCode },
+                    success: function () {
+                        P_Node.remove();
+
+                    }
+                })
+            }
+            else {
+                P_Node.remove();
+            }
+            var Qty = $(P_Node).closest('#Common').find("#Qty").val();
+            var T_Qty = $("#TotalQty").val();
+            T_Qty = T_Qty - Qty
+            $('#TotalQty').attr('Value', T_Qty)
+
+            var AmtTotal = $(P_Node).closest('#Common').find("#Amount").val();
+            var T_AmtTotal = $("#TotalAmt").val();
+            T_AmtTotal = T_AmtTotal - AmtTotal
+            $('#TotalAmt').attr('Value', T_AmtTotal)
+            $('#TotalAmt1').attr('Value', T_AmtTotal)
+            $('#NetAmt').attr('Value', T_AmtTotal)
+
+            j = j - 1;
+            if (j != 1) {
+                let elements = document.getElementsByClassName('item');
+                for (let i = 0; i < elements.length; i++) {
+                    $('.item').removeAttr('disabled');
+                }
+            }
+            else {
+                $('.item').attr('disabled', 'true');
+            }
+        }
+
+        function RemoveItem(div) {
+            var P_Node = div.parentNode.parentNode.parentNode;
+            console.log(P_Node);
+            P_Node.remove();
+        }
+
+
+
+        //$(function () {
+        //    /*$('.Item').mask('##,##,###.##', {reverse: true});*/
+        //    $('.Common1').each(function () {
+        //        var Total_Amount = function () {
+        //            var sum = 1;
+
+        //            $('.Item').each(function () {
+        //                var num = $(this).val();
+        //                if (num != 0) {
+        //                    sum *= parseFloat(num);
+        //                }
+        //            });
+        //            $('#Amount').val(sum);
+        //        }
+
+        //    $('.Item').keyup(function () {
+        //        Total_Amount();
+        //    });
+        //    });
+        //});
+
+        function CalAmt(div) {
+            var P_Node = div.parentNode.parentNode;
+            var Qty = 1;
+            var rate = 1;
+            var Amt;
+            //var T_Amt;
+
+            //T_Amt = parseFloat($('#TotalAmt').val());
+            Qty = $(P_Node).closest('#Common').find("#Qty").val()
+            rate = $(P_Node).closest('#Common').find("#Rate").val()
+
+
+            //Qty = $('#Qty').val();
+            //rate = $('#Rate').val();
+
+            Amt = Qty * rate;
+            /* console.log(Amt);*/
+            /* $(P_Node).closest('#Common').find("#Amount").val(Amt)*/
+            $(P_Node).closest('#Common').find("#Amount").attr('Value', Amt)
+            /*T_Amt += Amt;*/
+
+
+        }
+
+        function QtyTotal() {
+            var Sum = 0;
+            $('.Qty').each(function () {
+                var num = $(this).val();
+                if (num != 0) {
+                    Sum += parseFloat(num);
+                }
+            })
+            console.log(Sum);
+            /* $('#TotalQty').val(Sum);*/
+            $('#TotalQty').attr('Value', Sum)
+            var TotalQty = $('.ItemTotal').val();
+            /*console.log(TotalQty);*/
+
+        }
+
+        function DiscCal(Per) {
+            var P_Node = Per.parentNode.parentNode;
+            var GAmt = parseFloat($('#TotalAmt1').val());
+            var DiscP = parseFloat($('#DiscP').val());
+            /*console.log(DiscP);*/
+            var DiscA = GAmt * DiscP / 100;
+            /* console.log(DiscA);*/
+            $('#DiscAmt').attr('Value', DiscA)
+            var NAmt = GAmt - DiscA
+            $('#NetAmt').attr('Value', NAmt)
+
+        }
+        function TotalCal() {
+            var TotalSum = 0;
+            $('.AmtTotal').each(function () {
+                var AmountTotal = $(this).val();
+                if (AmountTotal != 0) {
+                    TotalSum += parseFloat(AmountTotal);
+
+                }
+
+            })
+            console.log(TotalSum);
+            $('#TotalAmt').attr('Value', TotalSum)
+            $('#TotalAmt1').attr('Value', TotalSum)
+            $('#NetAmt').attr('Value', TotalSum)
+        }
+        console.log(i);
+        if (i != 1) {
+            let elements = document.getElementsByClassName('detail');
+            for (let i = 0; i < elements.length; i++) {
+                $('.detail').removeAttr('disabled');
+            }
+            //$('.detail').each(function () {
+            //    $('this').attr('disabled', 'false');
+            //});
+        }
+        else {
+            $('.detail').attr('disabled', 'true');
+        }
+
+        console.log(j);
+        if (j != 1) {
+            let elements = document.getElementsByClassName('item');
+            for (let i = 0; i < elements.length; i++) {
+                $('.item').removeAttr('disabled');
+            }
+        }
+        else {
+            $('.item').attr('disabled', 'true');
+        }
+
+        $(function () {
+           /* $(".S_date").datepicker();*/
+            
+            var $Dp1 = $('.S_date');
+            $Dp1.datepicker({
+                /*dateFormat: "dd-mm-yy",*/
+                changeMonth: true,
+                changeYear: true,
+     
+            });
+           /* $Dp1.datepicker('setDate', new Date());*/
+
+            var $Dp2 = $('.E_Date');
+            $Dp2.datepicker({
+                dateFormat: "dd MM, yy",
+                changeMonth: true,
+                changeYear: true,
+                showOn: "both"
+            });
+            /*$Dp2.datepicker('setDate', new Date());*/
+        });
+
+        function GetDate() {
+            var date2 = $('.S_date').datepicker('getDate');
+            var d_change = parseInt($("#Day").val())
+            date2.setDate(date2.getDate() + d_change);
+            $('.E_Date').datepicker('setDate', date2);
+        };
+
+        function GetDay() {
+            var date1 = $('.S_date').datepicker('getDate');
+            var date2 = $('.E_Date').datepicker('getDate');
+            var time = date2.getTime() - date1.getTime() 
+            var millisecondInOneSecond = 1000
+            var secondInOneHour = 3600
+            var hoursInOneDay = 24
+            var day = time / (millisecondInOneSecond * secondInOneHour * hoursInOneDay)
+            console.log(day);
+            $("#Day").removeAttr('Value')
+            $("#Day").attr('Value', day)
+            $("#Day").val(day)
+        };
+
+        function GetDayNew() {
+            var date1 =  $(".StartDateNew").val()
+            var date2 = $(".E_DateNew").val()
+
+            const temp = date1.split("/");
+            var dd = temp[0];
+            var mm = temp[1];
+            var yy = temp[2];
+           
+            const temp1 = date2.split("/");
+            var dd1 = temp1[0];
+            var mm1 = temp1[1];
+            var yy1 = temp1[2];
+            var Month = 0;
+            var Year = 0;
+            if (mm != mm1) {
+                Month = mm1 - mm
+                Month *= 30
+            }
+            if (yy != yy1) {
+                Year = yy1 - yy
+                Year *= 365
+            }
+            var diff = Year + Month + (dd1 - dd)
+
+           
+
+            console.log(diff)
+            $("#DayNew").removeAttr('Value')
+            $("#DayNew").attr('Value', diff)
+            $("#DayNew").val(diff)
+
+        }
+
+        function NewDate() {
+            var date1 = $(".StartDateNew").val()
+            const temp = date1.split("/");
+            var dd = parseInt(temp[0]);
+            var mm = parseInt(temp[1]);
+            var yy = parseInt(temp[2]);
+            var AddYear = 0;
+            var AddMonth = 0;
+            var AddDay = 0;
+
+            var d_change = parseInt($("#DayNew").val())
+            if (d_change > 365) {
+                AddYear = Math.floor(d_change / 365)
+                AddMonth += (d_change % 365)  
+                d_change = d_change - 365 * AddYear
+            }
+            if (d_change > 30) {
+                AddMonth = Math.floor(d_change / 30)
+                AddDay = (d_change % 30)
+                d_change = d_change - 30 * AddMonth
+            }
+            AddDay = dd + d_change
+            AddMonth += mm
+            AddYear += yy
+
+
+            if (AddDay > 30) {
+                AddMonth += Math.floor(AddDay / 30)
+                AddDay = AddDay % 30
+            }
+            if (AddMonth > 12) {
+                AddYear += Math.floor(AddMonth / 12)
+                AddMonth = AddMonth % 12
+            }
+            Add
+            console.log(AddDay)
+            console.log(AddMonth)
+            console.log(AddYear)
+
+            var date = AddDay + "/" + AddMonth + "/" + AddYear
+            console.log(date)
+            $(".E_DateNew").removeAttr('Value')
+            $(".E_DateNew").attr('Value', date)
+            $(".E_DateNew").val(date)
+        }
+    </script>
+
+    
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+</body>
+</html>
