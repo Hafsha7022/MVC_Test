@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|d:\\hafsha\\github\\mvc_test\\mvc_test\\projectupdate\\consoleapp\\mcp\\localmcpserver\\localmcpserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|solutionrelative:localmcpserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|d:\\hafsha\\github\\mvc_test\\mvc_test\\projectupdate\\consoleapp\\mcp\\localmcpserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|d:\\hafsha\\github\\mvc_test\\mvc_test\\projectupdate\\consoleapp\\mcp\\localmcpserver\\tool\\externalweathertool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|solutionrelative:tool\\externalweathertool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|d:\\hafsha\\github\\mvc_test\\mvc_test\\projectupdate\\consoleapp\\mcp\\localmcpserver\\tool\\booktool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11736E1F-3539-4C4D-8D41-6F681313988D}|LocalMCPServer.csproj|solutionrelative:tool\\booktool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAuwB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T17:06:04.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookTool.cs",
+              "DocumentMoniker": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Tool\\BookTool.cs",
+              "RelativeDocumentMoniker": "Tool\\BookTool.cs",
+              "ToolTip": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Tool\\BookTool.cs",
+              "RelativeToolTip": "Tool\\BookTool.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T16:49:51.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExternalWeatherTool.cs",
+              "DocumentMoniker": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Tool\\ExternalWeatherTool.cs",
+              "RelativeDocumentMoniker": "Tool\\ExternalWeatherTool.cs",
+              "ToolTip": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\Tool\\ExternalWeatherTool.cs",
+              "RelativeToolTip": "Tool\\ExternalWeatherTool.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAkwB0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T14:36:21.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocalMCPServer.csproj",
+              "DocumentMoniker": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\LocalMCPServer.csproj",
+              "RelativeDocumentMoniker": "LocalMCPServer.csproj",
+              "ToolTip": "D:\\Hafsha\\GitHub\\Mvc_Test\\MVC_Test\\ProjectUpdate\\ConsoleApp\\MCP\\LocalMCPServer\\LocalMCPServer.csproj",
+              "RelativeToolTip": "LocalMCPServer.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-08T10:32:51.457Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
