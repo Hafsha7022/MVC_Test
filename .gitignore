@@ -1,0 +1,8 @@
+*.dll
+/ProjectUpdate/NewApp_SK/MCP/LocalMCPServer/.vs
+/ProjectUpdate/NewApp_SK/MCP/LocalMCPServer/bin
+/ProjectUpdate/NewApp_SK/MCP/LocalMCPServer/obj
+ProjectUpdate/New_MVC/New_MVC/obj/Debug/New_MVC.csproj.AssemblyReference.cache
+*.cache
+*.cache
+*.cache
